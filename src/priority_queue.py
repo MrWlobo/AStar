@@ -1,8 +1,4 @@
-class Coordinate:
-    def __init__(self, x: int, y: int, f_score: int):
-        self.x = x
-        self.y = y
-        self.f_score = f_score
+from .utils import Coordinate
 
 class PriorityQueue:
     def __init__(self, array: list[Coordinate], is_max_heap: bool = True):
