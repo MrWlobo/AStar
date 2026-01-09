@@ -1,5 +1,7 @@
 import random
 
+from priority_queue import PriorityQueue
+
 
 class SquareGrid:
     def __init__(self, rows, cols, start, target, empty_space_chance: float = 0.8, seed=42):
@@ -14,6 +16,9 @@ class SquareGrid:
     def place_start_and_target(self, start: tuple[int, int], target: tuple[int, int]) -> None:
         self.grid[start[0]][start[1]] = 2
         self.grid[target[0]][target[1]] = 3
+
+    def astar(self):
+        pass
 
     def __repr__(self):
         return "".join(f"{row}\n" for row in self.grid)

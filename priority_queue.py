@@ -1,14 +1,20 @@
+class Coordinate:
+    def __init__(self, x: int, y: int, f_score: int):
+        self.x = x
+        self.y = y
+        self.f_score = f_score
+
 class PriorityQueue:
-    def __init__(self, array: list[int], is_max_heap: bool):
+    def __init__(self, array: list[Coordinate], is_max_heap: bool = True):
         self.heap = array
         self.is_max_heap = is_max_heap
         self.build_heap()
 
-    def in_order(self, parent: int, child: int):
+    def in_order(self, parent: Coordinate, child: Coordinate) -> bool:
         if self.is_max_heap:
-            return True if parent >= child else False
+            return True if parent.f_score >= child.f_score else False
         else:
-            return True if parent <= child else False
+            return True if parent.f_score <= child.f_score else False
 
     def get_parent(self, index: int) -> int | None:
         if not self.heap or index <= 0:
@@ -80,10 +86,10 @@ class PriorityQueue:
         for index in reversed(range(len(self.heap) // 2)):
             self.heapify_down(index)
 
-    def get_root_value(self) -> int:
+    def get_root_value(self) -> Coordinate:
         return self.heap[0]
 
-    def insert(self, value: int) -> None:
+    def insert(self, value: Coordinate) -> None:
         self.heap.append(value)
         self.heapify_up(len(self.heap) - 1)
 
@@ -92,4 +98,4 @@ class PriorityQueue:
         self.heapify_down(0)
 
     def __repr__(self):
-        return str(self.heap)
+        return str([x.f_score for x in self.heap])
